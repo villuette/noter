@@ -11,13 +11,13 @@ datasource db {
 }
 
 model User {
-  userId                     Int          @id @default(autoincrement())
+  userId                     String       @id @default(uuid())
   nickname                   String       @unique
   name                       String?      @default("changeme")
   chats                      Chat[]
   messages                   Message[]
-  friendsIdList              String[]
-  pendingForFriendshipIdList String[]
+  friendsIdList              String[]     @default([])
+  pendingForFriendshipIdList String[]     @default([])
   role                       MemberRole
   ChatMember                 ChatMember[]
 }
@@ -29,20 +29,20 @@ enum MemberRole {
 }
 
 model Chat {
-  chatId       Int       @id @default(autoincrement())
+  chatId       String    @id @default(uuid())
   users        User[]
   messages     Message[]
   chatSettings Json
 }
 
 model ChatMember {
-  memberId Int        @id @default(autoincrement())
+  memberId String     @id @default(uuid())
   user     User       @relation(fields: [memberId], references: [userId])
   chatrole MemberRole
 }
 
 model Message {
-  messageId Int      @id @default(autoincrement())
+  messageId String   @id @default(uuid())
   chat      Chat     @relation(fields: [messageId], references: [chatId], map: "message_chat_fk")
   sender    User     @relation(fields: [messageId], references: [userId], map: "message_sender_fk")
   headers   String[]

@@ -9,8 +9,10 @@ import {
   IconButtonClasses,
 } from "@mui/material";
 import { AccountCircle, Assignment, Logout } from "@mui/icons-material";
+import initialProfile from "@/lib/initial-profile";
 
-export default function Home() {
+export default async function Home() {
+  const user = await initialProfile()
   return (
     <div className="h-full">
       <Header>
