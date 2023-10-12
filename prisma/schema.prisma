@@ -9,3 +9,31 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  userId                     Int       @id @default(autoincrement())
+  nickname                   String    @unique
+  name                       String?   @default("changeme")
+  password                   String
+  chats                      Chat[]
+  messages                   Message[]
+  friendsIdList              String[]
+  pendingForFriendshipIdList String[]
+  isAdmin                    Boolean
+  isModerator                Boolean
+}
+
+model Chat {
+  chatId       Int       @id @default(autoincrement())
+  users        User[]
+  messages     Message[]
+  chatSettings Json
+}
+
+model Message {
+  messageId Int      @id @default(autoincrement())
+  chat      Chat     @relation(fields: [messageId], references: [chatId], map: "message_chat_fk")
+  sender    User     @relation(fields: [messageId], references: [userId], map: "message_sender_fk")
+  headers   String[]
+  content   Json?
+}
