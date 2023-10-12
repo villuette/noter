@@ -11,16 +11,21 @@ datasource db {
 }
 
 model User {
-  userId                     Int       @id @default(autoincrement())
-  nickname                   String    @unique
-  name                       String?   @default("changeme")
-  password                   String
+  userId                     Int          @id @default(autoincrement())
+  nickname                   String       @unique
+  name                       String?      @default("changeme")
   chats                      Chat[]
   messages                   Message[]
   friendsIdList              String[]
   pendingForFriendshipIdList String[]
-  isAdmin                    Boolean
-  isModerator                Boolean
+  role                       MemberRole
+  ChatMember                 ChatMember[]
+}
+
+enum MemberRole {
+  ADMIN
+  MODERATOR
+  GUEST
 }
 
 model Chat {
@@ -28,6 +33,12 @@ model Chat {
   users        User[]
   messages     Message[]
   chatSettings Json
+}
+
+model ChatMember {
+  memberId Int        @id @default(autoincrement())
+  user     User       @relation(fields: [memberId], references: [userId])
+  chatrole MemberRole
 }
 
 model Message {
