@@ -1,5 +1,4 @@
 import { SignIn, SignOutButton, SignedOut, UserButton } from "@clerk/nextjs";
-import "./main.css";
 import Sidebar from "@/components/navigation/navigation-sidebar/Sidebar";
 import Header from "@/components/navigation/header/Header";
 import {

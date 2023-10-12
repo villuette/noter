@@ -12,7 +12,7 @@ datasource db {
 
 model User {
   userId                     String       @id @default(uuid())
-  nickname                   String       @unique
+  nickname                   String       @default("changeme")
   name                       String?      @default("changeme")
   chats                      Chat[]
   messages                   Message[]
