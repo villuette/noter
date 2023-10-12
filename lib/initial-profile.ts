@@ -8,7 +8,7 @@ export default async function initialProfile() {
   }
   const user = await db.user.findUnique({
     where: {
-      userId: curUser?.id,
+      userId: curUser.id,
     },
   });
 
@@ -17,9 +17,9 @@ export default async function initialProfile() {
   }
   const createdUser = db.user.create({
     data: {
+      userId: curUser.id,
       nickname: `${curUser!.id}`,
       role: "GUEST",
-      userId: curUser.id,
     },
   });
   return createdUser;
