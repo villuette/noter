@@ -18,7 +18,7 @@ export default function Header({
         {children}
       </ButtonGroup>
       <div className="mr-6">
-        <UserButton afterSignOutUrl="/sign-in" />
+        <UserButton afterSignOutUrl="/" />
       </div>
     </div>
   );
