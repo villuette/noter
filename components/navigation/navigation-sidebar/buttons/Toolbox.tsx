@@ -29,7 +29,7 @@ export const ButtonsList = () => {
     { name: "button7", active: false, pic: Friends },
     { name: "button8", active: false, pic: Friends },
   ]);
-  let [latestSelected, setLatestSelected] = useState<ButtonData>();
+  const [latestSelected, setLatestSelected] = useState<ButtonData>();
 
   const handleButtonClick = (
     buttonName: string,
@@ -62,7 +62,8 @@ export const ButtonsList = () => {
         const latestSelectedIndex = latestSelected
           ? buttons.findIndex((btn) => btn === latestSelected)
           : currentButtonIndex;
-          latestSelectedIndex === currentButtonIndex && setLatestSelected(buttons.find((btn) => btn.name === buttonName))
+        latestSelectedIndex === currentButtonIndex &&
+          setLatestSelected(buttons.find((btn) => btn.name === buttonName));
         const startIndex = Math.min(currentButtonIndex, latestSelectedIndex);
         const endIndex = Math.max(currentButtonIndex, latestSelectedIndex);
 
@@ -86,7 +87,7 @@ export const ButtonsList = () => {
       {buttons.map((button) => (
         <SidebarButton
           Picture={button.pic}
-          key={button.name}
+          key={button.name} //TODO fetching items from db for rolling updates (and use uuid instead)
           selected={button.active}
           name={button.name}
           onClick={() => {

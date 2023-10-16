@@ -3,7 +3,7 @@ import React, { MouseEventHandler } from "react";
 export default function SidebarButton({
   name,
   Picture,
-  selected = false,
+  selected,
   onClick,
 }: {
   name?: string;
@@ -13,9 +13,11 @@ export default function SidebarButton({
 }) {
   return (
     <button
-      className={`w-full h-[50px] hover:border-[#9299CD] border-2 border-transparent
+      className={`w-full h-[50px]  border-2 
      flex justify-between text-black ${
-       selected && "border-[#6778FF] hover:border-[#5462ce]"
+       selected
+         ? "border-[#6778FF] hover:border-[#5462ce]"
+         : "hover:border-[#9299CD] border-transparent"
      }`}
       onClick={onClick}
     >
