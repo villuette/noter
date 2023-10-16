@@ -15,11 +15,15 @@
     "@mui/icons-material": "^5.14.13",
     "@mui/material": "^5.14.13",
     "@prisma/client": "^5.4.2",
+    "@svgr/webpack": "^8.1.0",
     "crossenv": "^0.0.2-security",
+    "debug": "^4.3.4",
     "next": "13.5.4",
     "prisma": "^5.4.2",
     "react": "^18",
     "react-dom": "^18",
+    "semver": "^7.5.4",
+    "sharp": "^0.32.6",
     "vercel": "^32.4.1"
   },
   "devDependencies": {
